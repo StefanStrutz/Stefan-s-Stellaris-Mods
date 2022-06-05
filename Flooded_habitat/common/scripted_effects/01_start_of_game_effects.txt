@@ -2877,10 +2877,13 @@ flooded_void_dweller_home_planet_setup = {
 		give_starting_resources_effect = yes
 		save_event_target_as = flooded_void_dweller_owner
 		give_technology = {
-			tech = tech_habitat_1
 			tech = tech_mine_betharian
 			message = no
 		}
+		give_technology = {
+			tech = tech_habitat_1
+			message = no
+		}tech = tech_habitat_1
 		add_research_option = tech_habitat_2
 		add_research_option = tech_terrestrial_sculpting
 
