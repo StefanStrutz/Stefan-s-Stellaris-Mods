@@ -2866,10 +2866,6 @@ void_dweller_home_planet_setup = {
 				}
 			}
 		}
-		every_system_planet = {
-			limit = { has_planet_flag = mining_planet }
-			create_mining_station = { owner = event_target:void_dweller_owner }
-		}
 	}
 }
 
@@ -2882,9 +2878,11 @@ flooded_void_dweller_home_planet_setup = {
 		save_event_target_as = flooded_void_dweller_owner
 		give_technology = {
 			tech = tech_habitat_1
+			tech = tech_mine_betharian
 			message = no
 		}
 		add_research_option = tech_habitat_2
+		add_research_option = tech_terrestrial_sculpting
 
 		if = {
 			limit = {
@@ -2914,7 +2912,7 @@ flooded_void_dweller_home_planet_setup = {
 		}
 	}
 	while = {
-		count = 20
+		count = 18
 		create_pop = {
 			species = owner_main_species
 		}
@@ -2972,40 +2970,68 @@ flooded_void_dweller_home_planet_setup = {
 		}
 		add_building = building_posthumous_employment_center
 	}
-	if = {
-		limit = {
-			owner = {
-				has_valid_civic = civic_reanimated_armies
-				free_building_slots > 0
-			}
-		}
-		add_building = building_dread_encampment
 
-		solar_system = { #Necromancers do not give engineering. So make sure there's some readily-accessible engineering
-			while = {
-				count = 2
-				random_system_planet = {
-					limit = {
-						has_deposit_for = shipclass_research_station
-						NOT = { has_deposit = d_engineering_6 }
-					}
-					clear_deposits = yes
-					add_deposit = d_engineering_6
-				}
-			}
-		}
-	}
 	
-
+	#research_habitat
 
 	add_deposit = d_arcane_replicator
 	solar_system = {
-				every_system_planet = {
-			limit = { has_planet_flag = mining_planet }
-			create_mining_station = { owner = event_target:void_dweller_owner }
-		}
+		every_system_planet = {
+			limit = {has_planet_flag = false_hope }
+			add_modifier = { modifier =  unstable_tectonics  }
+			add_modifier = { modifier =  wild_storms  }
+			add_modifier = { modifier =  dangerous_wildlife }
+			#add_deposit = d_engineering_1
+			}
+		every_system_planet = {
+			limit = {has_planet_flag = flooded_habitat_cap_2 }
+			set_owner = event_target:flooded_void_dweller_owner
+			while = {
+				count = 9
+				create_pop = {
+					species = owner_main_species
+				}
+			}
+			set_planet_entity = {
+				entity = "habitat_phase_01_entity"
+				graphical_culture = event_target:flooded_void_dweller_owner
+			}
+			set_planet_size = 4
+			set_planet_flag = research_habitat
+			add_modifier = { modifier = flooded_habitat }
+			
+			add_district_and_planet_size_if_needed_effect = {
+				district = district_hab_science
+			}
+			add_district_and_planet_size_if_needed_effect = {
+				district = district_hab_cultural
+			}
+			if = {
+					limit = {
+						OR = {
+							is_lithoid_empire = no
+							is_catalytic_empire = yes
+						}
+					}
+				add_building = building_hydroponics_farm
+			}
+				if = {
+					limit = {
+						owner = {
+							has_valid_civic = civic_reanimated_armies
+						}
+					}
+					add_building = building_dread_encampment
+			}
+			}
+		limit = { has_planet_flag = mining_planet }
+		create_mining_station = { owner = event_target:flooded_void_dweller_owner}
 	}
 }
+	
+
+
+
 
 
 add_district_and_planet_size_if_needed_effect = {

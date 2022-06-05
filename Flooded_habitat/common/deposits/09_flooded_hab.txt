@@ -8,7 +8,4 @@ d_mountain_betharian_deposit = {
 	planet_modifier = {
 		building_betharian_power_plant_max = 1
 	}
-	planet_modifier = {
-			job_researcher_add = 3
-		}
 }

@@ -63,12 +63,27 @@ flooded_void_dweller_system = {
 		}
 	}
 
-	# Relic from ocean paradise origin
+	# It turns out one habitat isn't enough, Not enough building slots for the early game
 	planet = {
-		class = pc_frozen
+		class = pc_ocean
 		orbit_angle = -17
 		orbit_distance = 25
-		size = @frozen_world_min_size
+		size = 10
+		name = "False Hope"
+		modifiers = { unstable_tectonics dangerous_wildlife wild_storms }
+		#init_effect = {
+		#	set_deposit = d_physics_3
+		#}
+		flags = { ignore_startup_effect habitat_2_planet has_megastructure false_hope }
+		moon = { 
+			class = pc_habitat
+			orbit_angle = { min = 90 max = 270 }
+			orbit_distance = 5
+			size = 4
+			modifiers = flooded_habitat
+			flags = {flooded_habitat_cap_2 megastructure habitat research_habitat  }
+			deposit_blockers = none
+		}
 	}
 
 	# Ice Asteroids

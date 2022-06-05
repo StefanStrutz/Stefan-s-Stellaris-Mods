@@ -265,7 +265,7 @@ event = {
 							remove_modifier = hazardous_weather
 						}
 						if = {
-							limit = { has_modifier = dangerous_wildlife }
+							limit = { has_modifier = dangerous_wildlife NOT = {has_planet_flag = false_hope} }
 							remove_modifier = dangerous_wildlife
 						}
 						if = {
@@ -277,7 +277,7 @@ event = {
 							remove_modifier = strong_magnetic_field
 						}
 						if = {
-							limit = { has_modifier = unstable_tectonics }
+							limit = { has_modifier = unstable_tectonics NOT = {has_planet_flag = false_hope} }
 							remove_modifier = unstable_tectonics
 						}
 						if = {
@@ -301,7 +301,7 @@ event = {
 							remove_modifier = carbon_world
 						}
 						if = {
-							limit = { has_modifier = wild_storms }
+							limit = { has_modifier = wild_storms NOT = {has_planet_flag = false_hope} }
 							remove_modifier = wild_storms
 						}
 						if = {
